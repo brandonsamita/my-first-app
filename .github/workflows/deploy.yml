@@ -1,6 +1,4 @@
-name: CI/CD Pipeline 
-
- 
+name: Deploy to Azure 
 
 on: 
 
@@ -8,60 +6,31 @@ on:
 
     branches: 
 
-      - main          # Trigger the workflow when code is pushed to 'main' 
-
-  pull_request: 
-
-    branches: 
-
-      - main          # Trigger the workflow on pull requests to 'main' 
+      - main 
 
  
 
-jobs: 
+permissions: 
 
-  build: 
+  id-token: write 
 
-    runs-on: ubuntu-latest 
-
-    strategy:
-
-      matrix: 
-
-        environment: [staging, production]  # Define multiple environments 
-
-    steps: 
-
-    - name: Checkout Code 
-
-      uses: actions/checkout@v2       # Check out the repository code 
+  contents: read 
 
  
 
-    - name: Set up Node.js 
-
-      uses: actions/setup-node@v2 
-
-      with: 
-
-        node-version: '14'            # Set up Node.js version 14 
-
- 
-
-    - name: Install Dependencies 
-
-      run: npm install                # Install Node.js dependencies 
-
- 
-
-    - name: Run Tests 
-
-      run: npm test                   # Run tests  
 jobs: 
 
   build-and-deploy: 
 
     runs-on: ubuntu-latest 
+
+ 
+
+    strategy: 
+
+      matrix: 
+
+        environment: [staging, production]  # Define multiple environments 
 
  
 
