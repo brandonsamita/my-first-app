@@ -76,6 +76,6 @@ jobs:
 
         with: 
 
-          app-name: "my-first-app" 
+          app-name: "mywebapp12397" 
 
           package: . 
