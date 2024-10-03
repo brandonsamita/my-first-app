@@ -54,9 +54,9 @@ jobs:
 
       - name: Run Tests 
 
-        run: npm test 
+        run: npm test  # Adjust based on your testing framework 
 
-      
+ 
 
       - name: Display Deployment Start 
 
@@ -64,13 +64,15 @@ jobs:
 
  
 
-      - name: Deploy to Azure App Service 
+      - name: Deploying code to Azure App Service 
 
         run: echo "Deploying code to Azure App Service..."  # Output message for progress tracking 
 
  
 
-      - name: Deploy to Azure App Service 
+      - name: Deploy if tests pass 
+
+        if: success()  # Only deploy if tests pass 
 
         uses: azure/webapps-deploy@v2 
 
@@ -80,7 +82,7 @@ jobs:
 
           package: . 
 
-         
+ 
 
       - name: Rollback if deployment fails 
 
